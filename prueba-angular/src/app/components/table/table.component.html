@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-content>
+    <div class="table">
+      <table class="table">
+        <caption>List of users</caption>
+        <thead>
+          <tr>
+            <th scope="col" *ngFor="let column of columns">{{column}}</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of datos | slice:desde:hasta">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.status}}</td>
+            <td>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-sm btn-outline-success"
+                  (click)="selectId(user.id, 'edit')">Edit</button>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                  (click)="selectId(user.id, 'delete')">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [length]="dataSize" [pageSize]="pageSize" (page)="cambiarPagina($event)"
+        [pageSizeOptions]="[3, 5, 10, 25]" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

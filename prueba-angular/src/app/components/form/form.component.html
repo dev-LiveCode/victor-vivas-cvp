@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-content>
+    <form>
+      <div class="mb-4">
+        <label for="inputName" class="form-label">Name</label>
+        <input type="text" class="form-control" id="inputName" [value]="user?.name">
+        <span id="s-inputName" class="text-danger" style="display: none;" >Este campo es obligatorio</span>
+      </div>
+      <div class="mb-4">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" [value]="user?.email">
+        <span id="s-inputEmail" class="text-danger" style="display: none;" >Este campo es obligatorio</span>
+        <span id="s-inputEmail-v" class="text-danger" style="display: none;" >Email no valido</span>
+      </div>
+      <div class="mb-4">
+        <label for="inputGender" class="form-label">Gender</label>
+        <select class="form-control" id="inputGender" [value]="user?.gender">
+          <option [value]="'female'">Femenino</option>
+          <option [value]="'male'">Masculino</option>
+        </select>
+        <span id="s-inputGender" class="text-danger" style="display: none;" >Este campo es obligatorio</span>
+      </div>
+      <div class="mb-4">
+        <label class="form-label">status</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="inputStatusA" (change)="statusForm($event, true)" (click)="statusForm($event, true)" [checked]="user?.status == 'active'">
+              <label class="form-check-label" for="inputStatusA">
+                Activo
+              </label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" id="inputStatusI" (change)="statusForm($event, false)" (click)="statusForm($event, false)" [checked]="user?.status == 'inactive'">
+              <label class="form-check-label" for="inputStatusI">
+                Inactivo
+              </label>
+            </div>
+          </div>
+        </div>
+        <span id="s-inputStatus" class="text-danger" style="display: none;" >Este campo es obligatorio</span>
+      </div>
+      
+      <button type="button" class="btn btn-sm btn-outline-primary" (click)="sendForm($event)">{{action != 'edit' ? 'Save' : 'Edit'}}</button>
+      <button *ngIf="action == 'edit'" type="button" class="btn btn-sm btn-outline-danger"
+        (click)="cancel($event)">Cancel</button>
+    </form>
+  </mat-card-content>
+</mat-card>

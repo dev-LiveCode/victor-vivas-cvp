@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <app-table *ngIf="datos.length > 0" [datos]="datos" (idEvent)="selectId($event)"></app-table>
+        </div>
+        <div class="col">
+            <app-form [user]="user" (cargarTabla)="getUsers()" [action]="action" (cancelEdit)="cancelEdit($event)"></app-form>
+        </div>
+    </div>
+</div>
